@@ -4,7 +4,7 @@
 #define pin_led 14
 
 //TRABALHANDO COM POTENCIOMETRO
-#define pot 26
+#define potPin 26
 unsigned int valuePot;
 
 void setup() {
@@ -12,7 +12,7 @@ void setup() {
   pinMode(pin_led, OUTPUT);
 
   //TRABALHANDO COM POTENCIOMETRO
-  pinMode(pot, INPUT);
+  pinMode(potPin, INPUT);
 }
 
 void loop() {
@@ -25,8 +25,10 @@ void loop() {
   // delay(valuePot);
 
   //EX 2 - AUMENTANDO A INTENSIDADE DO LED
-  valuePot = analogRead(pot);
-  byte val = byte((valuePot)/4);
-  analogWrite(pin_led, val);
+  // valuePot = analogRead(pot);
+  // byte val = byte((valuePot)/4);
+  // analogWrite(pin_led, val);
+
+
   
 }
