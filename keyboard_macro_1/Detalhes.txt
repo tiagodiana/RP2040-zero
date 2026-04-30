@@ -1,0 +1,11 @@
+Perfeito, com os diodos a sua matriz vai funcionar como um teclado profissional (N-Key Rollover), permitindo que você aperte várias teclas ao mesmo tempo sem erros (ghosting).
+## Como instalar os diodos:
+
+   1. Soldar um diodo em cada botão.
+   2. A orientação correta é: o Catodo (lado com a faixinha preta) deve apontar para as Colunas (GP8, GP9, GP10).
+   3. O Anodo (lado sem faixa) vai soldado no pino do botão, e o outro pino do botão vai para as Linhas (GP5, GP6, GP7).
+
+---------------------------------------------
+
+Dica final: Se ao testar o volume ele parecer "lento", você pode diminuir o valor de sensibility para uns 25 ou 20.
+Você já tem os botões e o potenciômetro em mãos para começar a soldagem agora?

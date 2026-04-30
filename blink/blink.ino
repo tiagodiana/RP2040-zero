@@ -14,7 +14,7 @@ void setup() {
 void loop() {  
   //LED INTERNO DA PLACA
   pixels.clear();
-  pixels.setPixelColor(0, pixels.Color(10, 30, 0));
+  pixels.setPixelColor(0, pixels.Color(30, 30, 0));
   pixels.show();
   delay(500);
   pixels.setPixelColor(0, pixels.Color(0, 0, 0));
