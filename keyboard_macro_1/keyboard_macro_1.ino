@@ -1,4 +1,6 @@
 /*
+  TECLADO 3X2 + 1, 1 ENCODER, DISPLAY 128X32
+
   CÓDIGO DESENVOLVIDO PARA RP2040 ZERO
   https://www.waveshare.com/wiki/RP2040-Zero
 
@@ -13,6 +15,9 @@
   7x Switch Drinkey red + 3x Diode 5v1
   1x Display Oled 128x32
   1x Pontentiometer B10K
+  4× M3x16mm Parafuso
+  4× M3x5mx4mm Porcas
+
 
   PINOS:
   GP0, GP1 = DISPLAY
@@ -21,7 +26,7 @@
   GP5 = ENCODER CLICK
   GP6, GP7 = ROWS MATRIX KEYBOARD
   GP8, GP9, GP10 = COLS MATRIX KEYBOARD
-  GP16 = LED
+  GP16 = LED BOARD
 */
 
 // BIBLIOTECAS PARA O DISPLAY
@@ -74,6 +79,7 @@ Adafruit_USBD_HID usb_hid;
 
 const char TITLE[] = "MACRO PAD - CUSTOM";
 int modeStep = 1;
+int menuTotal = 3;
 
 void setup() {
   pixels.begin();
@@ -123,14 +129,20 @@ void loop()
     case 2: 
       mode2();
       break;
+
+    case 3: 
+      mode3();
+      break;
   }
 
   switch(modeStep)
   {
     case 1:
     case 2:
+    case 3:
       encoderActions();
       encoderButtonAction();
+      break;
   }
 }
 
@@ -138,7 +150,7 @@ void actionButtonMode()
 {
   clearDisplay();
     modeStep++;
-    if(modeStep > 2)
+    if(modeStep > menuTotal)
     {
       modeStep = 1;
     }
@@ -212,7 +224,7 @@ void displayOLedTextMode2()
   //display.setCursor(0,15);
   display.println("MODE 2 - SYSTEM");
   display.println("COPY - CUT - PASTE");
-  display.println("FIND - MUTE - MENU");
+  display.println("MUTE - VOL- - VOL+");
   display.display();
 }
 
@@ -224,9 +236,9 @@ void displayOLedTextMode3()
   //display.setCursor(0,0);
   display.println(TITLE);
   //display.setCursor(0,15);
-  display.println("MODE 3 - MULTIMEDIA");
-  display.println("PREV - PLAY - NEXT");
-  display.println("VOL+ - VOL- - MUTE");
+  display.println("MODE 3 - HEXADECIMAL");
+  display.println("A - B - C");
+  display.println("D - E - F");
   display.display();
 }
 
@@ -316,7 +328,7 @@ void mode2()
   // Mapeamento: 2x3 = 9 teclas
   uint8_t keys[2][3] = {
     {HID_KEY_COPY, HID_KEY_CUT, HID_KEY_PASTE},
-    {HID_KEY_FIND, HID_KEY_MUTE, HID_KEY_MENU}
+    {HID_KEY_MUTE, HID_KEY_VOLUME_DOWN, HID_KEY_VOLUME_UP}
   };
 
   matrixActions(keys);
@@ -327,8 +339,8 @@ void mode3()
   displayOLedTextMode3();
   // Mapeamento: 2x3 = 9 teclas
   uint8_t keys[2][3] = {
-    
-    {HID_KEY_C, HID_KEY_F18, HID_KEY_F19}
+    {HID_KEY_KEYPAD_A, HID_KEY_KEYPAD_B, HID_KEY_KEYPAD_C},
+    {HID_KEY_KEYPAD_D, HID_KEY_KEYPAD_E, HID_KEY_KEYPAD_F}
   };
 
   matrixActions(keys);
